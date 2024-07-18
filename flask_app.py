@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from flask import Flask,request,render_template
 
 UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg','webp'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg','webp','JPG'])
 
 if 'static' not in os.listdir('.'):
     os.mkdir('static')
@@ -41,7 +41,8 @@ def remback():
         rembg_img_name = filename.split('.')[0]+"_rembg.png"
         remove_background(UPLOAD_FOLDER+'/'+filename,UPLOAD_FOLDER+'/'+rembg_img_name)
         return render_template('home.html',org_img_name=filename,rembg_img_name=rembg_img_name)
-
+    else:
+        return 'invalid file'
 
 if __name__ == '__main__':
     app.run(debug=True)
